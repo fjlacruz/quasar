@@ -1,0 +1,132 @@
+
+====================
+Curso de Laravel 6.
+=====================
+
+
+requisitos :
+git
+curl
+php>5.3
+composer
+apache
+laragon en windows
+mod rewrite acitvo
+(https://www.youtube.com/watch?v=zNrRaKGvhlU)
+
+instalacion de composer:
+sudo curl -sS https://getcomposer.org/installer | php
+php composer.phar
+sudo mv composer.phar /usr/local/bin/composer (para instalar globalmente)
+
+instalar node js
+instalar postman
+
+
+En visual studio code instalar los siguientes plugins:
+
+snippet laravel
+laravel artisan
+laravel goto view
+laravel snippets blade
+material icon vsc
+
+
+instalacion de laravel.
+composer global require laravel/installer
+
+composer create-project --prefer-dist laravel/laravel nombre_proyecto  (laravel new nombre_proyecto)
+cd nombre_proyecto
+php artisan serve
+
+la configuracion  la DB se hace en .env en la raiz del proyecto
+
+Para crear controladores (en Plural)
+cd carpeta_proyecto
+php artisan  (visulizamos los comandos que podemos ejecutar)
+php artisan route:list (muestra la lista de rutas creadas)
+php artisan make:controller --help
+php artisan make:controller NombreControladorController
+php artisan make:controller dashboard/CategoryController -r --model=Category  (Creamos simultaneamente el modelo)
+php artisan make:controller -r NombreControladorController  (controladores administrativos)
+
+
+
+
+
+Para crear bases de datos
+Creamos la DB nombreDatabase y este lo colocamos en el archivo .env 
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=larablog
+DB_USERNAME=root
+DB_PASSWORD=
+
+ejecutamos
+php artisan migrate
+
+en caso de error:
+php artisan cache
+php artisan config
+php artisan migrate      (se crearan automaticamente tablas en la base de datos)
+
+php artisan make:migration create_posts_table
+
+si hacemos algun cambio  en la estructura de la migracion (tablas)
+php artisan migrate:rollback --step=1
+php artisan migrate
+
+
+Para instalar Bootstrap y vue (y otras dependencias o librerias)
+composer require laravel/ui –dev
+php artisan ui bootstrap
+php artisan ui vue
+npm install
+npm run dev
+
+
+
+para validar formularios validate faceda
+
+
+Creacion de modelos: (nombre debe ser en singular y haciendo referencia a la tabla con la cual se comunicara)
+php artisan make:model NombreModel
+
+
+en el controlador respectivo para la comunucacion con el modelo se debe importar la clase,
+estando en postController en el metodo store escribimos en nombre del modelo Post click derecho e importar class
+
+
+ejecutamos php artisan make:request StoreNombretabletPost
+
+
+librería para trabajar fechas: carbon
+
+
+cuando se instala un nuevo paque con npm, se debe ejecura luego npm run dev para resolver las dependencias y en el archivo resource/js/app se debe llamar a esa dependencia
+
+
+Para crear modulo de autenticacion:
+php artisan ui vue --auth
+
+
+Para crear refrescar tablas 
+php artisan migrate:refresh  (con este comando se pierden todos los datos que se encuentren en las base de datos) 
+
+Para crear nuestros propios middleware:
+php artisan make:middleware CheckAge
+Se deben establecer las reglas en el archivo creado y luego registrarlo en el archivo Kernel.php
+
+Para trabajar con vue los cambios deben hacerce en js/app.js y ejecutar npm install y luego npn run dev para actualizar los cambios
+
+para no estar ejecutando npm run dev a cada momento para ver los cambios ejecutmos npm run watch para que se autodetecten los cambios 
+
+
+
+
+
+
+
+
+
